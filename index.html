@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang Upload File</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    .upload-box { border: 2px dashed #aaa; padding: 30px; width: 300px; margin: auto; }
+  </style>
+</head>
+<body>
+  <h2>🗂️ Upload File của bạn</h2>
+  <div class="upload-box">
+    <input type="file" id="fileInput" multiple><br><br>
+    <button onclick="handleUpload()">Tải lên</button>
+    <div id="fileList" style="margin-top:20px;"></div>
+  </div>
+
+  <script>
+    function handleUpload() {
+      const files = document.getElementById('fileInput').files;
+      const list = document.getElementById('fileList');
+      list.innerHTML = "<h4>File đã chọn:</h4>";
+      if (files.length === 0) {
+        list.innerHTML += "Không có file nào!";
+        return;
+      }
+      for (let i = 0; i < files.length; i++) {
+        list.innerHTML += `<p>📄 ${files[i].name} (${Math.round(files[i].size / 1024)} KB)</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
